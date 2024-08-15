@@ -1,4 +1,9 @@
 bodymodels/
+data/
+smplx_models/
+*.zip
+output/
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
