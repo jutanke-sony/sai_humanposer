@@ -9,6 +9,7 @@ from einops import rearrange, repeat
 def get_smpl(gender: str, *, batch_size: int = 1, smpl_path: str = None) -> SMPL:
     if smpl_path is None:
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smpl")))
+    smpl_path = smpl_path.replace("notebooks/", "")
     return SMPL(smpl_path, batch_size=batch_size, gender=gender)
 
 
@@ -21,6 +22,7 @@ def get_smplh(
 ) -> SMPLH:
     if smpl_path is None:
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smplh")))
+    smpl_path = smpl_path.replace("notebooks/", "")
     return SMPLH(
         smpl_path, batch_size=batch_size, gender=gender, use_compressed=use_compressed
     )
@@ -35,6 +37,7 @@ def get_smplx(
 ) -> SMPLX:
     if smpl_path is None:
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smplx")))
+    smpl_path = smpl_path.replace("notebooks/", "")
     return SMPLX(
         smpl_path, batch_size=batch_size, gender=gender, use_compressed=use_compressed
     )
