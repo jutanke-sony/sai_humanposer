@@ -2,8 +2,8 @@ from setuptools import setup, find_packages
 
 setup(
     name="humanposer",
-    version="0.0.3",
+    version="1.0.0",
     packages=find_packages(),
-    install_requires=["matplotlib", "numpy", "tqdm", "einops", "smplx", "chumpy"],
+    install_requires=["matplotlib", "numpy", "tqdm", "einops", "gdown"],
     python_requires=">=3.8",
 )

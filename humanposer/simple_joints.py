@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from smplx.lbs import (
+from humanposer.smplx.lbs import (
     blend_shapes,
     vertices2joints,
     batch_rodrigues,

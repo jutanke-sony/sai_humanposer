@@ -1,37 +1,43 @@
 import numpy as np
-from smplx import SMPL
-from smplx.lbs import (
-    blend_shapes,
-    vertices2joints,
-    batch_rodrigues,
-    batch_rigid_transform,
-)
+import torch
+from humanposer.smplx.body_models import SMPL, SMPLH, SMPLX
 from os.path import abspath, isfile, isdir, join
 from os import getcwd
-import torch
-import torch.nn as nn
 from einops import rearrange, repeat
-from humanposer.transforms.rotation_conversions import (
-    rotation_6d_to_matrix,
-    matrix_to_axis_angle,
-)
 
 
 def get_smpl(gender: str, *, batch_size: int = 1, smpl_path: str = None) -> SMPL:
     if smpl_path is None:
-        smpl_path = join(getcwd(), join("bodymodels", "smpl"))
-        smpl_path = smpl_path.replace("Library/CloudStorage/OneDrive-Sony", "")
-        smpl_path = smpl_path.replace("notebooks/", "")
-        smpl_path = abspath(smpl_path)
-    assert isdir(smpl_path), smpl_path
-    if gender == "female":
-        smpl_fname = join(smpl_path, "basicmodel_f_lbs_10_207_0_v1.0.0.pkl")
-    elif gender == "male":
-        smpl_fname = join(smpl_path, "basicmodel_m_lbs_10_207_0_v1.0.0.pkl")
-    else:
-        raise ValueError(f"Unknown gender {gender} used...")
-    assert isfile(smpl_fname), smpl_fname
-    return SMPL(smpl_fname, batch_size=batch_size)
+        smpl_path = abspath(join(getcwd(), join("bodymodels", "smpl")))
+    return SMPL(smpl_path, batch_size=batch_size, gender=gender)
+
+
+def get_smplh(
+    gender: str,
+    *,
+    batch_size: int = 1,
+    smpl_path: str = None,
+    use_compressed: bool = False,
+) -> SMPLH:
+    if smpl_path is None:
+        smpl_path = abspath(join(getcwd(), join("bodymodels", "smplh")))
+    return SMPLH(
+        smpl_path, batch_size=batch_size, gender=gender, use_compressed=use_compressed
+    )
+
+
+def get_smplx(
+    gender: str,
+    *,
+    batch_size: int = 1,
+    smpl_path: str = None,
+    use_compressed: bool = False,
+) -> SMPLX:
+    if smpl_path is None:
+        smpl_path = abspath(join(getcwd(), join("bodymodels", "smplx")))
+    return SMPLX(
+        smpl_path, batch_size=batch_size, gender=gender, use_compressed=use_compressed
+    )
 
 
 @torch.no_grad()
