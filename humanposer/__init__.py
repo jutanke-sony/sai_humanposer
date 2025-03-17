@@ -1,4 +1,10 @@
-from humanposer.bodymodel import get_smpl, get_smplh, get_smplx, smpl_forward, smpl_forward_no_grad
+from humanposer.bodymodel import (
+    get_smpl,
+    get_smplh,
+    get_smplx,
+    smpl_forward,
+    smpl_forward_no_grad,
+)
 from typing import Dict
 import yaml
 from os import getcwd, makedirs
@@ -16,6 +22,7 @@ def download_bodymodels(config: Dict):
         models = ["smpl", "smplh", "smplx"]
 
         bodymodels_dir = join(abspath(getcwd()), "bodymodels")
+        bodymodels_dir = bodymodels_dir.replace("notebooks/", "")
         makedirs(bodymodels_dir, exist_ok=True)
 
         for model in models:
