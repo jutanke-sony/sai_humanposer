@@ -6,17 +6,20 @@ from os import getcwd
 from einops import rearrange, repeat
 
 
-def get_smpl(gender: str, *, batch_size: int = 1, smpl_path: str = None) -> SMPL:
+def get_smpl(
+    gender: str, *, batch_size: int = 1, num_betas: int = 10, smpl_path: str = None
+) -> SMPL:
     if smpl_path is None:
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smpl")))
     smpl_path = smpl_path.replace("notebooks/", "")
-    return SMPL(smpl_path, batch_size=batch_size, gender=gender)
+    return SMPL(smpl_path, batch_size=batch_size, gender=gender, num_betas=num_betas)
 
 
 def get_smplh(
     gender: str,
     *,
     batch_size: int = 1,
+    num_betas: int = 10,
     smpl_path: str = None,
     use_compressed: bool = False,
 ) -> SMPLH:
@@ -24,7 +27,11 @@ def get_smplh(
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smplh")))
     smpl_path = smpl_path.replace("notebooks/", "")
     return SMPLH(
-        smpl_path, batch_size=batch_size, gender=gender, use_compressed=use_compressed
+        smpl_path,
+        batch_size=batch_size,
+        gender=gender,
+        use_compressed=use_compressed,
+        num_betas=num_betas,
     )
 
 
@@ -32,6 +39,7 @@ def get_smplx(
     gender: str,
     *,
     batch_size: int = 1,
+    num_betas: int = 10,
     smpl_path: str = None,
     use_compressed: bool = False,
 ) -> SMPLX:
@@ -39,7 +47,11 @@ def get_smplx(
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smplx")))
     smpl_path = smpl_path.replace("notebooks/", "")
     return SMPLX(
-        smpl_path, batch_size=batch_size, gender=gender, use_compressed=use_compressed
+        smpl_path,
+        batch_size=batch_size,
+        gender=gender,
+        use_compressed=use_compressed,
+        num_betas=num_betas,
     )
 
 
