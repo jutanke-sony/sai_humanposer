@@ -22,6 +22,7 @@ def get_smplh(
     num_betas: int = 10,
     smpl_path: str = None,
     use_compressed: bool = False,
+    use_pca=False,
 ) -> SMPLH:
     if smpl_path is None:
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smplh")))
@@ -32,6 +33,7 @@ def get_smplh(
         gender=gender,
         use_compressed=use_compressed,
         num_betas=num_betas,
+        use_pca=use_pca,
     )
 
 
@@ -42,6 +44,7 @@ def get_smplx(
     num_betas: int = 10,
     smpl_path: str = None,
     use_compressed: bool = False,
+    use_pca=False,
 ) -> SMPLX:
     if smpl_path is None:
         smpl_path = abspath(join(getcwd(), join("bodymodels", "smplx")))
@@ -52,6 +55,7 @@ def get_smplx(
         gender=gender,
         use_compressed=use_compressed,
         num_betas=num_betas,
+        use_pca=use_pca,
     )
 
 
