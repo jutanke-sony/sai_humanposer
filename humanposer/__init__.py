@@ -36,3 +36,11 @@ def download_bodymodels(config: Dict):
                     print(f"fetch {model} ({gender})")
                     gdown.download(url, fname)
                     print(f"\tsave to {fname}")
+
+        # download UV map
+        uv_fname = join(bodymodels_dir, "smplx_uv.obj")
+        if not isfile(uv_fname):
+            url = config["uv_map"]
+            print(f"fetch smplx uv map")
+            gdown.download(url, uv_fname)
+            print(f"\tsave to {uv_fname}")
